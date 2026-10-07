@@ -4,7 +4,7 @@
 #            @id                  a command id (e.g. file.saveAs): wins over the English text for
 #                                 that menu item, so one id can read differently from its twin
 #            @plural              `source` is "one|other" (English forms); the translation lists the
-#                                 language's forms separated by "|" (see `plural` in i18n/mod.rs)
+#                                 language's forms separated by "|" (see `pluralRule` in locales/manifest.json)
 #            anything else        a disambiguating context passed to `tr_ctx`
 #   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns.
 #   lines starting with # and blank lines are ignored.
@@ -2264,3 +2264,8 @@
 	Opening…	Открытие…
 	Reading…	Чтение…
 	Working…	Обработка…
+
+# Language pack maintenance
+	Load Translations	Загрузить переводы
+	Reload Translations	Перезагрузить переводы
+	Drag to move the targeted vector mask	Перетащите, чтобы переместить выбранную векторную маску

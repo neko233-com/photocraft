@@ -19,9 +19,9 @@ See [UI localisation](localization.md) for the supported languages and switching
 
 ## Files and integration
 
-- `crates/ui-egui/src/i18n/zh-hans.tsv` contains the translations, independent of
+- `crates/ui-egui/locales/zh-hans.tsv` contains the translations, independent of
   the lookup implementation. Its UTF-8 columns are `context<TAB>source<TAB>translation`.
-- `zh-hans` is registered in `crates/ui-egui/src/i18n/mod.rs`, displayed as
+- `zh-hans` is registered in `crates/ui-egui/locales/manifest.json`, displayed as
   `简体中文`, with one plural form and enforced complete-catalog checks.
 - Select **Preferences > Interface > Language > 简体中文**, or set
   `interface.language` to `zh-hans` through the existing `prefs.set` command.

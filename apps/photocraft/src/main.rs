@@ -174,11 +174,19 @@ fn main() -> eframe::Result {
     log::info!("GPU startup: {:?} ({sentinel_ms:.2} ms)", plan);
     let started_sentinel = sentinel.clone();
     let result = eframe::run_native(
-        "Photocraft",
+        "PhotoCraft",
         options,
         Box::new(move |cc| {
             let automation = control.as_ref().map(|(_, _, workspace)| workspace.clone());
             let mut services = services::native(automation);
+            if let Some(dir) =
+                std::env::var_os("PHOTOCRAFT_LOCALES_DIR").map(std::path::PathBuf::from).or_else(|| services::config_dir().map(|dir| dir.join("Locales")))
+            {
+                match photocraft_ui_egui::i18n::native::watch(dir, cc.egui_ctx.clone()) {
+                    Ok(source) => services.locales = Some(Box::new(source)),
+                    Err(error) => log::warn!("PhotoCraft translations: {error}"),
+                }
+            }
             services.preset_store = presets;
             let mut app = PhotocraftApp::new(Session::new(), services);
             app.integrated_titlebar = cfg!(target_os = "macos");

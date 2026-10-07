@@ -4,7 +4,7 @@
 #            @id                  a command id (e.g. file.saveAs): wins over the English text for
 #                                 that menu item, so one id can read differently from its twin
 #            @plural              `source` is "one|other" (English forms); the translation lists the
-#                                 language's forms separated by "|" (see `plural` in i18n/mod.rs)
+#                                 language's forms separated by "|" (see `pluralRule` in locales/manifest.json)
 #            anything else        a disambiguating context passed to `tr_ctx`
 #   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns.
 #   lines starting with # and blank lines are ignored.
@@ -1986,3 +1986,8 @@
 	Opening…	開いています…
 	Reading…	読み込み中…
 	Working…	処理中…
+
+# Language pack maintenance
+	Load Translations	翻訳を読み込む
+	Reload Translations	翻訳を再読み込み
+	Drag to move the targeted vector mask	ドラッグして対象のベクトルマスクを移動

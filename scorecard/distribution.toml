@@ -66,7 +66,7 @@ id = "DIST-220-4"
 target = "Translation coverage per language reported by xtask; RTL layout for Arabic and Hebrew"
 status = "partial"
 issue = 220
-note = "2026-10-07: 9 UI languages, enforced catalog coverage, live switching and preference preview tests; xtask coverage reporting and RTL remain missing"
+note = "2026-10-07: 9 UI languages, configuration-driven registry, external-pack hot reload, xtask coverage/scaffolding and live preview tests; RTL remains missing"
 
 [[item]]
 id = "DIST-220-5"

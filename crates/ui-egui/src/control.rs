@@ -537,6 +537,7 @@ pub fn inspect(app: &PhotocraftApp, ctx: &egui::Context) -> Value {
         "theme": app.ui.theme,
         "status": app.ui.status,
         "statusError": app.ui.status_error,
+        "localizations": app.ui.localizations,
         "notices": app.ui.notices,
         "frame": app.frame,
         "session": photocraft_engine::inspect::session(&app.session),

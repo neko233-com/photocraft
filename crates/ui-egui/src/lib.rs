@@ -10,7 +10,7 @@
 /// Translate a string literal into the current UI language: `tl!("Image Size…")`.
 macro_rules! tl {
     ($s:expr) => {
-        $crate::i18n::t($s)
+        &*$crate::i18n::t($s)
     };
 }
 
@@ -223,6 +223,8 @@ pub struct Services {
     /// the web (see `prefs_ui`).
     pub load_prefs: Option<LoadTextFn>,
     pub save_prefs: Option<SaveTextFn>,
+    /// Validated external language packs, delivered without file I/O on the drawing thread.
+    pub locales: Option<Box<dyn i18n::runtime::LocaleSource>>,
     /// Crash-recovery autosave (Preferences › File Handling) and recovery at launch.
     pub autosave: Option<AutosaveFn>,
     pub discard_autosave: Option<DiscardAutosaveFn>,
@@ -242,6 +244,7 @@ pub struct PhotocraftApp {
     pub session: Session,
     pub ui: UiState,
     pub services: Services,
+    pub(crate) localizations: i18n::runtime::Runtime,
     canvases: HashMap<DocId, canvas::CanvasCache>,
     checker: Option<egui::TextureHandle>,
     drag: Option<canvas::Drag>,
@@ -382,6 +385,7 @@ impl PhotocraftApp {
             session,
             ui: UiState::default(),
             services,
+            localizations: i18n::runtime::Runtime::default(),
             canvases: HashMap::new(),
             checker: None,
             drag: None,
@@ -450,6 +454,8 @@ impl PhotocraftApp {
             live_tokens: theme::live::LiveTokens::from_env(),
         };
         // Saved preferences (and recovered documents) are in place before the first frame.
+        app.localizations.activate();
+        app.ui.localizations = app.localizations.status();
         prefs_ui::load(&mut app);
         // File › Scripts › Script Events Manager: "Start Application".
         photocraft_engine::automate_cmds::fire_event(&mut app.session, "startApplication");
@@ -800,6 +806,9 @@ impl PhotocraftApp {
 
 impl eframe::App for PhotocraftApp {
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        if self.localizations.tick(self.services.locales.as_mut()) {
+            self.ui.localizations = self.localizations.status();
+        }
         i18n::set_current(i18n::Lang::from_pref(&self.session.prefs().interface.language));
         if !self.styled {
             Self::setup_context(ctx, self.ui.theme);
@@ -871,6 +880,7 @@ impl eframe::App for PhotocraftApp {
 
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         let ctx = ui.ctx().clone();
+        self.localizations.activate();
         i18n::set_current(i18n::Lang::from_pref(&self.session.prefs().interface.language));
         // Fonts registered via set_fonts only take effect next frame; named families would panic now.
         if !self.fonts_ready {
