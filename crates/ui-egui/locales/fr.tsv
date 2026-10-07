@@ -5,7 +5,7 @@
 #                                 that menu item, so one id can read differently from its twin
 #            @plural              `source` is "one|other" (English forms); the translation lists
 #                                 the French forms "one|other" (0 and 1 take the singular), see
-#                                 `plural` in i18n/mod.rs
+#                                 `pluralRule` in manifest.json
 #   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns.
 #   lines starting with # and blank lines are ignored.
 #
@@ -2497,3 +2497,9 @@ cameraRaw	Blending	Fusion
 	5 x 5	5 × 5
 	Grid:	Grille :
 	Edit Type	Modifier le texte
+
+
+# Language-pack maintenance and vector-mask hint.
+	Load Translations	Charger les traductions
+	Reload Translations	Recharger les traductions
+	Drag to move the targeted vector mask	Faites glisser pour déplacer le masque vectoriel ciblé

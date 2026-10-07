@@ -10,6 +10,8 @@ pub const TOP_MENUS: [&str; 10] = ["File", "Edit", "Image", "Layer", "Type", "Se
 
 /// UI-level commands (handled by the shell rather than the engine): id, label, menu, shortcut.
 pub const UI_COMMANDS: &[(&str, &str, &[&str], Option<&str>)] = &[
+    ("ui.i18n.load", "Load Translations", &[], None),
+    ("ui.i18n.reload", "Reload Translations", &[], None),
     ("file.open", "Open…", &["File"], Some("Cmd+O")),
     ("file.save", "Save", &["File"], Some("Cmd+S")),
     ("file.saveAs", "Save As…", &["File"], Some("Cmd+Shift+S")),
@@ -161,6 +163,9 @@ pub(crate) fn invoke_unguarded(app: &mut PhotocraftApp, ctx: &egui::Context, id:
     // View/Window/Type shell items, and dialogs/pickers in front of File commands.
     // Edit › Preferences, Keyboard Shortcuts, Color Settings and other Edit dialogs.
     if let Some(r) = crate::prefs_ui::invoke(app, ctx, id, &params) {
+        return r;
+    }
+    if let Some(r) = crate::i18n::runtime::invoke(app, ctx, id, &params) {
         return r;
     }
     // Save for Web, Print and the other File-menu dialogs added with slices.
@@ -468,6 +473,8 @@ pub fn is_enabled(app: &PhotocraftApp, id: &str) -> bool {
         return e;
     }
     match id {
+        "ui.i18n.load" => true,
+        "ui.i18n.reload" => app.services.locales.is_some(),
         "file.open" | "file.exit" | "file.clearRecent" | "help.about" | "help.systemInfo" | "edit.search" => true,
         i if i.starts_with("file.openRecent.") => true,
         i if crate::links::url_for(i).is_some() => true,

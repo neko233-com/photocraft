@@ -174,20 +174,20 @@ pub fn show(app: &mut PhotocraftApp, ctx: &egui::Context) {
                     }
                 } else {
                     let ok_label = if d.kind == DialogKind::NewDocument {
-                        tl!("Create")
+                        "Create"
                     } else if d.fields.contains_key("__export") {
-                        tl!("Export")
+                        "Export"
                     } else {
-                        crate::file_ui::ok_label(&d.fields).unwrap_or(tl!("OK"))
+                        crate::file_ui::ok_label(&d.fields).unwrap_or("OK")
                     };
-                    if crate::widgets::primary_button(ui, ok_label, 84.0).clicked() || ui.input(|i| i.key_pressed(egui::Key::Enter)) {
+                    if crate::widgets::primary_button(ui, tl!(ok_label), 84.0).clicked() || ui.input(|i| i.key_pressed(egui::Key::Enter)) {
                         outcome = Some(true);
                     }
                     if d.kind == DialogKind::Command && crate::prefs_ui::is_preferences(&fields) {
                         let changed = crate::prefs_ui::preferences_changed(app, &fields);
                         apply_requested = ui.add_enabled_ui(changed, |ui| crate::widgets::secondary_button(ui, tl!("Apply"), 84.0)).inner.clicked();
                     }
-                    if crate::widgets::secondary_button(ui, if d.kind == DialogKind::NewDocument { tl!("Close") } else { tl!("Cancel") }, 84.0).clicked() {
+                    if crate::widgets::secondary_button(ui, tl!(if d.kind == DialogKind::NewDocument { "Close" } else { "Cancel" }), 84.0).clicked() {
                         outcome = Some(false);
                     }
                 }

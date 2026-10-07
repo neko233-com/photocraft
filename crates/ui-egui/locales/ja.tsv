@@ -4,7 +4,7 @@
 #            @id                  a command id (e.g. file.saveAs): wins over the English text for
 #                                 that menu item, so one id can read differently from its twin
 #            @plural              `source` is "one|other" (English forms); the translation lists the
-#                                 language's forms separated by "|" (see `plural` in i18n/mod.rs)
+#                                 language's forms separated by "|" (see `pluralRule` in manifest.json)
 #            anything else        a disambiguating context passed to `tr_ctx`
 #   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns.
 #   lines starting with # and blank lines are ignored.
@@ -2050,3 +2050,9 @@ cameraRaw	Color	カラー
 	Patch:	パッチ:
 	Lasso around an area, then drag the selection	投げ縄で範囲を囲み、選択範囲をドラッグします
 	Edit Type	文字を編集
+
+
+# Language-pack maintenance and vector-mask hint.
+	Load Translations	翻訳を読み込む
+	Reload Translations	翻訳を再読み込み
+	Drag to move the targeted vector mask	ドラッグして対象のベクトルマスクを移動
