@@ -2023,3 +2023,8 @@ cameraRaw	Color	색상
 
 # Type layer thumbnails (#598)
 	Edit Type	문자 편집
+
+# Language-pack maintenance and vector-mask hint.
+	Load Translations	번역 불러오기
+	Reload Translations	번역 새로고침
+	Drag to move the targeted vector mask	드래그하여 대상 벡터 마스크 이동

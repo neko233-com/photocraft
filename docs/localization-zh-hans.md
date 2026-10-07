@@ -25,10 +25,10 @@ language manually there.
 
 ## Files and integration
 
-- `crates/ui-egui/src/i18n/zh-hans.tsv` contains the translations, independent of
+- `crates/ui-egui/locales/zh-hans.tsv` contains the translations, independent of
   the lookup implementation. Its UTF-8 columns are `context<TAB>source<TAB>translation`.
-- `crates/ui-egui/src/i18n/mod.rs` registers `zh-hans` with one plural form and
-  `complete_menus: true`. Shared tests enforce coverage of every menu string,
+- `crates/ui-egui/locales/manifest.json` registers `zh-hans` with one plural form and
+  `completeMenus: true`. Shared tests enforce coverage of every menu string,
   `tl!` literal, blend mode, brush section and generated preference label.
 - Shortcut templates retain `{key}` so the shell supplies the correct key for
   the current platform. Layer-count messages use one Chinese plural form.

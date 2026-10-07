@@ -4,7 +4,7 @@
 #            @id                  a command id (e.g. file.saveAs): wins over the English text for
 #                                 that menu item, so one id can read differently from its twin
 #            @plural              `source` is "one|other" (English forms); the translation lists the
-#                                 language's forms separated by "|" (see `plural` in i18n/mod.rs)
+#                                 language's forms separated by "|" (see `pluralRule` in manifest.json)
 #            anything else        a disambiguating context passed to `tr_ctx`
 #   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns.
 #   lines starting with # and blank lines are ignored.
@@ -2338,3 +2338,12 @@ cameraRaw	Roughness	Неровность
 	Patch:	Заплатка:
 	Lasso around an area, then drag the selection	Обведите область лассо, затем перетащите выделение
 	Edit Type	Редактировать текст
+
+
+# Language-pack maintenance and vector-mask hint.
+	Load Translations	Загрузить переводы
+	Reload Translations	Перезагрузить переводы
+	Drag to move the targeted vector mask	Перетащите, чтобы переместить выбранную векторную маску
+
+# Owned timeline lookup, also covered by the resource maintenance check.
+	Frame {current} / {total}	Кадр {current} / {total}

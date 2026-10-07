@@ -2070,3 +2070,9 @@ cameraRaw	Blending	混合
 	Details	详细信息
 	Rendering mode	渲染模式
 	Edit Type	编辑文字
+
+
+# Language-pack maintenance and vector-mask hint.
+	Load Translations	加载翻译
+	Reload Translations	重新加载翻译
+	Drag to move the targeted vector mask	拖动以移动目标矢量蒙版

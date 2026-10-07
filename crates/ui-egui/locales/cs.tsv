@@ -4,8 +4,8 @@
 #            @id                  a command id (e.g. file.saveAs): wins over the English text for
 #                                 that menu item, so one id can read differently from its twin
 #            @plural              `source` is "one|other" (English forms); the translation lists the
-#                                 Czech forms "one|few|other" (1 | 2–4 | 0, 5+), see `plural` in
-#                                 i18n/mod.rs
+#                                 Czech forms "one|few|other" (1 | 2–4 | 0, 5+), see `pluralRule` in
+#                                 manifest.json
 #            anything else        a disambiguating context passed to `tr_ctx`
 #   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns.
 #   lines starting with # and blank lines are ignored.
@@ -2061,3 +2061,9 @@ cameraRaw	Color	Barvy
 	Patch:	Záplata:
 	Lasso around an area, then drag the selection	Obtáhněte oblast lasem a pak přetáhněte výběr
 	Edit Type	Upravit text
+
+
+# Language-pack maintenance and vector-mask hint.
+	Load Translations	Načíst překlady
+	Reload Translations	Znovu načíst překlady
+	Drag to move the targeted vector mask	Tažením přesunete cílovou vektorovou masku
