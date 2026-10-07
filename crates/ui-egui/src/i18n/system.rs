@@ -85,11 +85,13 @@ mod tests {
         for (tags, expected) in [
             (vec!["ja-JP", "en-US"], "ja"),
             (vec!["fr-CA", "en-US"], "fr"),
-            (vec!["de-DE", "ko-KR", "fr-FR"], "ko"),
+            (vec!["sv-SE", "ko-KR", "fr-FR"], "ko"),
             (vec!["zh-Hant-HK", "zh-CN"], "zh-hant"),
             (vec!["zh-Hans-CN", "zh-TW"], "zh-hans"),
             (vec!["en-US", "ru-RU"], "en"),
-            (vec!["de-DE", "ar-SA"], "en"),
+            (vec!["sv-SE", "ar-SA"], "en"),
+            (vec!["de-AT", "en-US"], "de"),
+            (vec!["pt-PT"], "pt-br"),
             (vec![], "en"),
         ] {
             with_system_tags(&tags, || assert_eq!(system_lang().code(), expected));
